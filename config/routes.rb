@@ -8,4 +8,11 @@ Rails.application.routes.draw do
   root to: "pages#home"
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :destinations, only: %i[index show new create] do
+    resources :reservations
+  end
+  resources :users, only: %i[show new create] do
+    resources :reservations
+  end
+  resources :reservations
 end
