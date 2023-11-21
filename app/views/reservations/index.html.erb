@@ -1,0 +1,20 @@
+<h1>Vos réservations</h1>
+
+<%# <ul> %>
+<%# <% @destination.reservations.each do |reservation| %>
+<%# <li><%= reservation.user.first_name %>
+<%# <%= link_to 'refuser la réservation', %>
+  <%# reservation_path(reservation), %>
+  <%# data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+<%# </li> %>
+<%# <% end %>
+<%# </ul> %>
+
+
+<ul>
+<% current_user.destinations.each do |destination| %>
+  <% destination.reservations.each do |reservation| %>
+  <li><%= reservation.user.first_name %><%= reservation.user.last_name %><%= reservation.destination.name %></li>
+  <% end %>
+<% end  %>
+</ul>
