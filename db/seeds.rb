@@ -9,9 +9,19 @@
 #   end
 
 # Users
+Reservation.destroy_all
+Destination.destroy_all
+User.destroy_all
+user1 = User.create!(first_name: "Théo", last_name: "Martin", email: "theomartin@email.com", password: "123456789", address: "Nantes")
+user2 = User.create!(first_name: "Léa", last_name: "Bernard", email: "leabernard@email.com", password: "987654321", address: "Caen")
+user3 = User.create!(first_name: "Léo", last_name: "Pierre", email: "leopierre@email.com", password: "147258369", address: "Paris")
 
-User.create(first_name: "Théo", last_name: "Martin", email: "théomartin@email.com", address: "Nantes", password: "1234")
-User.create(first_name: "Léa", last_name: "", email: "théomartin@email.com", address: "Nantes", password: "1234")
+# Destinations
+destination1 = Destination.create!(name: "La lune", description: "Marcher sur la lune", date_of_availability: "2023-12-27", price: 100000000, user_id: user1.id )
+destination2 = Destination.create!(name: "ile paradisiaque", description: "Nager avec les dauphins", date_of_availability: "2023-12-27", price: 1000000, user_id: user2.id)
+puts "Coucou"
 
-Destination.create!(name: "La lune", description: "Marcher sur la lune", date_of_availability: "2023-12-27", price: 100000000)
-Destination.create!(name: "ile paradisiaque", description: "Nager avec les dauphins", date_of_availability: "2023-12-27", price: 1000000)
+#Reservations
+reservation1 = Reservation.create(destination_id: destination1.id, user_id: user1.id)
+reservation2 = Reservation.create(destination_id: destination2.id, user_id: user2.id)
+reservation3 = Reservation.create(destination_id: destination1.id, user_id: user3.id)
