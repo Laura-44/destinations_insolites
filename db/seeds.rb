@@ -8,5 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# Users
+
+User.create(first_name: "Théo", last_name: "Martin", email: "théomartin@email.com", address: "Nantes", password: "1234")
+User.create(first_name: "Léa", last_name: "", email: "théomartin@email.com", address: "Nantes", password: "1234")
+
 Destination.create!(name: "La lune", description: "Marcher sur la lune", date_of_availability: "2023-12-27", price: 100000000)
 Destination.create!(name: "ile paradisiaque", description: "Nager avec les dauphins", date_of_availability: "2023-12-27", price: 1000000)

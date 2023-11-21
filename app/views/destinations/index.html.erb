@@ -1,2 +1,6 @@
 <h1>Les destinations de vos rêves</h1>
-<%= @destination.name %>
+<ul>
+  <% @destinations.each do |destination| %>
+    <li><%= link_to destination.name, destination_path(destination) %></li>
+  <% end %>
+</ul>
