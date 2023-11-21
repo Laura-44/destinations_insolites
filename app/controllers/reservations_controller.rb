@@ -1,6 +1,10 @@
 class ReservationsController < ApplicationController
   before_action :set_destination, only: %i[new create]
 
+  def index
+    @reservations = Reservation.all
+  end
+
   def new
     @destination = Destination.find(params[:destination_id])
     @reservation = Reservation.new
