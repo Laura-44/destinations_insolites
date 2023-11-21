@@ -1,0 +1,6 @@
+<h1>Nouvelle réservation </h1>
+<%= simple_form_for [@destination, @reservation] do |f| %>
+  <%= f.association :destination %>
+  <%= f.association :user %>
+  <%= f.button :submit %>
+<% end %>
