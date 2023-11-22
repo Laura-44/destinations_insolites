@@ -1,0 +1,16 @@
+<h1><%= @destination.name %></h1>
+<p><%= @destination.description %></p>
+<p><%= @destination.date_of_availability %></p>
+<%# <p><%= f.input :opening_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %></p> %>
+<p><%= @destination.price %></p>
+
+<p><% @destination.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %></p>
+
+<%= link_to "retourner à la liste", destinations_path %>
+<%= link_to 'Nouvelle destination', new_destination_path %>
+<%= link_to 'Je réserve', new_destination_reservation_path(@destination) %>
+<%= link_to 'Mes réservations', destination_reservations_path(@destination) %>
