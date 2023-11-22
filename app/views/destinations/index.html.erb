@@ -10,7 +10,7 @@
       <div class="card-disponibility">
         <h2>Les prochaines disponibilités :</h2>
       </div>
-      <div calss="card-destination">
+      <div class="card-destination">
         <% @destinations.each do |destination| %>
         <%# div card arret avant end du link %>
           <h1><%= link_to destination.name, destination_path(destination) %></h1>
