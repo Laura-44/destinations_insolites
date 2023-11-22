@@ -7,15 +7,22 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="card-disponibility" >
+      <div class="card-disponibility">
         <h2>Les prochaines disponibilités :</h2>
       </div>
-          <div calss="card-destination">
-            <% @destinations.each do |destination| %>
-              <div class="card">
-                <div class="card-body">
-              <p><% destination.photos.each do |photo| %>
-
-              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-            <% end %></p>
-                <h1><%= link_to destination.name, destination_path(destination) %>
+      <div calss="card-destination">
+        <% @destinations.each do |destination| %>
+        <%# div card arret avant end du link %>
+          <h1><%= link_to destination.name, destination_path(destination) %></h1>
+            <p><%= destination.description %></p>
+            <p><%= destination.date_of_availability %></p>
+            <p><%= destination.price %></p>
+          <p><% destination.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+          <% end %></p>
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
