@@ -5,8 +5,9 @@
   </div>
 
 <div class="container">
-  <div class="card-destination">
+  <div class="card-destination" >
     <h2>Les prochaines disponibilités :</h2>
+
         <% @destinations.each do |destination| %>
         <%# div card arret avant end du link %>
           <h1><%= link_to destination.name, destination_path(destination) %></h1>
@@ -19,3 +20,4 @@
         <% end %>
   </div>
 </div>
+
