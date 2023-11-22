@@ -1,9 +1,11 @@
 <h1><%= @destination.name %></h1>
 <p><%= @destination.description %></p>
 <p><%= @destination.date_of_availability %></p>
-<%# <p><%= f.input :opening_date,
+<p><%= simple_form_for(@destination) do |f| %>
+<%= f.input :date_of_availability,
             as: :string,
-            input_html: { data: { controller: "datepicker" } } %></p> %>
+            input_html: { data: { controller: "datepicker" } } %>
+            <% end %></p>
 <p><%= @destination.price %></p>
 
 <p><% @destination.photos.each do |photo| %>
