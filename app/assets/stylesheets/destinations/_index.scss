@@ -1,0 +1,20 @@
+.card-destination {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block: 20px;
+  background-color: white;
+}
+
+.card-body {
+  display: grid;
+  align-items:center;
+  // height: 200px;
+  // margin-block: 20px;
+  background-color: white;
+}
+.card-body img {
+  border-radius: 10px;
+  object-fit: scale-down;
+}
