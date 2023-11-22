@@ -1,18 +1,30 @@
-<h1><%= @destination.name %></h1>
-<p><%= @destination.description %></p>
-<p><%= @destination.date_of_availability %></p>
-<p><%= simple_form_for(@destination) do |f| %>
-<%= f.input :date_of_availability,
-            as: :string,
-            input_html: { data: { controller: "datepicker" } } %>
-            <% end %></p>
-<p><%= @destination.price %></p>
+<div class="container">
+  <div class= "d-flex justify-content-between">
+    <h1><%= @destination.name %></h1>
+    <%= link_to destinations_path do %>
+      <i class="fa-regular fa-circle-xmark"></i>
+    <% end %>
+  </div>
+  <div class="shadow p-3 mb-5 bg-body rounded w-50">
+    <p><% @destination.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "image w-100 h-100" %>
+    <% end %></p>
+    </div>
+    <p><%= @destination.description %></p>
+  <div>
+    <p><%= @destination.price  %> € la semaine</p>
+  </div>
+  <%# <p><%= @destination.date_of_availability %></p>
+  <div>
+    <p><%= simple_form_for(@destination) do |f| %>
+    <%= f.input :date_of_availability,
+                as: :string,
+                input_html: { data: { controller: "datepicker" } } %>
+                <% end %></p>
+    <%= link_to 'Je réserve', new_destination_reservation_path(@destination), class: "btn btn-primary" %>
+  </div>
 
-<p><% @destination.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-<% end %></p>
-
-<%= link_to "retourner à la liste", destinations_path %>
-<%= link_to 'Nouvelle destination', new_destination_path %>
-<%= link_to 'Je réserve', new_destination_reservation_path(@destination) %>
-<%= link_to 'Mes réservations', destination_reservations_path(@destination) %>
+  <%# <div>
+    <%= link_to 'Mes réservations', destination_reservations_path(@destination) %>
+  <%# </div> %>
+</div>
