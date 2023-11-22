@@ -1,6 +1,50 @@
-<h1>Les destinations de vos rêves</h1>
-<ul>
-  <% @destinations.each do |destination| %>
-    <li><%= link_to destination.name, destination_path(destination) %></li>
-  <% end %>
-</ul>
+<div class="banner">
+  <div class= "card-categry">
+    <h1>Les destinations de vos rêves</h1>
+    <p>Ayez quelque chose à raconter à la pause café du matin</p>
+  </div>
+
+<div class="container">
+  <div class="card-destination">
+    <h2>Les prochaines disponibilités :</h2>
+      <ul>
+        <% @destinations.each do |destination| %>
+          <li><h1><%= destination.name %></h1>
+                <p><%= destination.description %></p>
+                <p><%= destination.date_of_availability %></p>
+                <p><%= destination.price %></p>
+                  <p><% destination.photos.each do |photo| %>
+                    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                  <% end %></p></li>
+        <% end %>
+      </ul>
+  </div>
+</div>
+
+<%# <%= cl_image_tag("omedrycq3fhw4zgtok9o",
+      width: 400, height: 300, crop: :fill) %>
+
+<%# <%= cl_image_tag("porte-du-desert-maroc_yvxqt6",
+      width: 400, height: 300, crop: :fill) %>
+
+<%# <%= cl_image_tag("istockphoto-887323060-612x612_i4euoq",
+      width: 400, height: 300, crop: :fill) %>
+
+<%# <%= cl_image_tag("istockphoto-157286122-612x612_cnit3x",
+      width: 400, height: 300, crop: :fill) %>
+
+<%# <%= cl_image_tag("istockphoto-971852206-612x612_nnpw24",
+      width: 400, height: 300, crop: :fill) %>
+
+<%# <%= cl_image_tag("Camping-ile-deserte-plage-de-Naris-beach-whitsunday-Australie-1024x576_moy0c3",
+      width: 400, height: 300, crop: :fill) %>
+
+<%# <%= cl_image_tag("Bung2-300x246_huhvlw",
+      width: 400, height: 300, crop: :fill) %>
+
+<%# <%= cl_image_tag("800302_inline1_scale_450xauto_qims4x",
+      width: 400, height: 300, crop: :fill) %>
+
+<%# <%= cl_image_tag("9bd6468_524793604-for-press-release_mwa1ho",
+      width: 400, height: 300, crop: :fill) %>
+
