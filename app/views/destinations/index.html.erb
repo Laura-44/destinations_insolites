@@ -9,7 +9,7 @@
     <h2>Les prochaines disponibilités :</h2>
       <ul>
         <% @destinations.each do |destination| %>
-          <li><h1><%= destination.name %></h1>
+          <li><h1><%= link_to destination.name, destination_path(destination) %></h1>
                 <p><%= destination.description %></p>
                 <p><%= destination.date_of_availability %></p>
                 <p><%= destination.price %></p>
@@ -47,4 +47,3 @@
 
 <%# <%= cl_image_tag("9bd6468_524793604-for-press-release_mwa1ho",
       width: 400, height: 300, crop: :fill) %>
-
