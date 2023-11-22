@@ -5,19 +5,23 @@
   </div>
 
 <div class="container">
-  <div class="card-destination">
+  <div class="card-destination" >
     <h2>Les prochaines disponibilités :</h2>
-      <ul>
-        <% @destinations.each do |destination| %>
-          <li><h1><%= destination.name %></h1>
-                <p><%= destination.description %></p>
-                <p><%= destination.date_of_availability %></p>
-                <p><%= destination.price %></p>
-                  <p><% destination.photos.each do |photo| %>
-                    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-                  <% end %></p></li>
-        <% end %>
-      </ul>
+          <ul>
+            <% @destinations.each do |destination| %>
+              <div class="card">
+                <div class="card-body">
+                  <li><h1><%= destination.name %></h1>
+                    <p><%= destination.description %></p>
+                    <p><%= destination.date_of_availability %></p>
+                    <p><%= destination.price %></p>
+                      <p><% destination.photos.each do |photo| %>
+                        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                      <% end %></p></li>
+             <% end %>
+          </ul>
+                </div>
+              </div>
   </div>
 </div>
 
@@ -47,4 +51,3 @@
 
 <%# <%= cl_image_tag("9bd6468_524793604-for-press-release_mwa1ho",
       width: 400, height: 300, crop: :fill) %>
-
