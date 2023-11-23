@@ -15,7 +15,6 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    raise
     @reservation = Reservation.new(reservation_params)
     @reservation.destination = @destination
     if @reservation.save!
