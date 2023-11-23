@@ -20,6 +20,15 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def update
+    raise
+    @reservation = Reservation.find(params[:id])
+    if @reservation.status_accepted?
+
+    end
+
+  end
+
   def destroy
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
@@ -33,6 +42,6 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:destination_id, :user_id)
+    params.require(:reservation).permit(:destination_id, :user_id, :status)
   end
 end

@@ -12,9 +12,33 @@
 
 
 <ul>
-<% current_user.destinations.each do |destination| %>
-  <% destination.reservations.each do |reservation| %>
-  <li><%= reservation.user.first_name %><%= reservation.user.last_name %><%= reservation.destination.name %></li>
-  <% end %>
-<% end  %>
+  <% if current_user.destinations %>
+    <% current_user.destinations.each do |destination| %>
+      <% destination.reservations.each do |reservation| %>
+      <li><%= reservation.user.first_name %><%= reservation.user.last_name %><%= reservation.destination.name %></li>
+      <li><%= link_to 'Accepter', destination_reservations_path(destination, status: "accepted") %></li>
+      <li><%= link_to 'Refuser', destination_reservations_path(destination, status: "declined") %></li>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>Vous n'avez pas encore proposé de destination</p>
+  <% end  %>
 </ul>
+
+<%# soit lien soit formulaire
+input : deux boutons acepter ou refuser
+va update en changeant le status
+
+faire statut par défaut : rails g migration AddDefaultStatusToReservation ?
+faire l'update du controller
+récupérer le statut en cours sur la view
+en fonction,  %>
+
+
+<%# si proprio click sur "accepter"
+    envoie acceptation au user
+    envoie refus aux autres users
+    destroy les autres demandes
+  si proprio click sur "refus"
+    envoie refus au user
+    destroy la demande %>
