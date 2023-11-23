@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
 
   def index
     @reservations = Reservation.all
+    # @reservations = Reservation.where(params[:destination_id])
   end
 
   def new
