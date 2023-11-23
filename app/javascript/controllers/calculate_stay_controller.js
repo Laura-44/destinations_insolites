@@ -1,23 +1,33 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="calculate-stay"
 export default class extends Controller {
+  static values = {
+    price: Number
+  }
+
+  static targets = ["totalStay","daysDiff","totalAmount","dates","option"]
+
   connect() {
-    // console.log("calculate-stay-connected")
   }
+
   calculate(event) {
-    const dates=event.target.value.split(" ")
-    // console.log(dates[0].length)
-    // console.log(dates.split(" "))
-    if (dates.length === 3)
- {   const tempSatrtDate=dates[0].split('-')
- console.log(tempSatrtDate)
-     const startDate = new Date (tempSatrtDate[1],tempSatrtDate[0],tempSatrtDate[2])
-     const tempEndDate=dates[2].split('-')
-     const endDate = new Date (tempEndDate[0],tempEndDate[1],tempEndDate[2])
-    // console.log(dates.split(" "))
-    console.log(startDate)
-    console.log(endDate)
+  const dates=this.datesTarget.value.split(" ")
+
+    if (dates.length === 3){
+      const tempStartDate=dates[0].split('-')
+      const startDate = new Date (`20${tempStartDate[2]}`,Number(tempStartDate[1])-1,tempStartDate[0])
+      const tempEndDate=dates[2].split('-')
+      const endDate = new Date (`20${tempEndDate[2]}`,Number(tempEndDate[1])-1,tempEndDate[0])
+      const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+      const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      this.daysDiffTarget.innerText=`Séjour de ${daysDiff} nuitées`
+      let calculated = (daysDiff*this.priceValue)
+      this.optionTargets.forEach( (option) => {
+        if (option.checked) {
+          calculated = calculated + (Number(option.value)*daysDiff)
+        }
+      })
+      this.totalStayTarget.innerText=`Coût Total du séjour ${calculated} €`
+    }
   }
-}
 }
