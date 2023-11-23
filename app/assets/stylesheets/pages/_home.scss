@@ -1,2 +1,21 @@
 // Specific CSS for your home-page
 
+// .carousel-inner img{
+//   object-fit: cover;
+// }
+
+.carousel {
+  border: 1px solid red;
+}
+
+.active {
+  border: 1px solid green;
+}
+//  .carousel-item {
+//   width: 500px;
+//   height: 300px;
+//  }
+
+ .agrandir-image {
+  object-fit: fill;
+ }

@@ -1,20 +1,12 @@
-.card-destination {
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-block: 20px;
-  background-color: white;
+.custom-border {
+  border-left: 5mm solid #fff; /* Bordure de 5 mm à gauche */
+  border-right: 5mm solid #fff; /* Bordure de 5 mm à droite */
+  border-top: 5mm solid #fff;
 }
 
-.card-body {
-  display: grid;
-  align-items:center;
-  // height: 200px;
-  // margin-block: 20px;
-  background-color: white;
-}
-.card-body img {
-  border-radius: 10px;
-  object-fit: scale-down;
+h3 {
+  color: #0E9EBD;
+  padding-left: 25px;
+  padding-bottom: 18px;
+  padding-top: 67px;
 }

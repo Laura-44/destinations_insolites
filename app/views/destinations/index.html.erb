@@ -1,28 +1,29 @@
 <div class="banner">
-  <div class= "card-categry">
-    <h1>Les destinations de vos rêves</h1>
-    <p>Ayez quelque chose à raconter à la pause café du matin</p>
+  <div class="card-category">
+    <%# <h1>Les destinations de vos rêves</h1> %>
+    <h3>Ayez quelque chose à raconter à la pause café du matin 🙂🍵</h3>
   </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="card-disponibility">
-        <h2>Les prochaines disponibilités :</h2>
-      </div>
-      <div class="card-destination">
-        <% @destinations.each do |destination| %>
-        <%# div card arret avant end du link %>
-          <h1><%= link_to destination.name, destination_path(destination) %></h1>
-            <p><%= destination.description %></p>
-            <p><%= destination.date_of_availability %></p>
-            <p><%= destination.price %></p>
-          <p><% destination.photos.each do |photo| %>
-            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-          <% end %></p>
-        <% end %>
-      </div>
-      </div>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @destinations.each do |destination| %>
+        <div class="col">
+          <div class="card shadow h-100 rounded custom-border">
+            <p>
+              <% destination.photos.each do |photo| %>
+                <%= cl_image_tag photo.key, height: 200, width: 300, crop: :fill, class: "img-fluid rounded-4" %>
+                <!-- Ajustez la hauteur et la largeur selon vos besoins -->
+              <% end %>
+            </p>
+            <div class="text">
+              <h2><%= link_to destination.name, destination_path(destination), class: "text-decoration-none text-dark" %></h2>
+              <p><%= destination.description %></p>
+              <p><%= destination.date_of_availability %></p>
+              <p><%= destination.price %> €</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
