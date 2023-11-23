@@ -10,8 +10,13 @@ Rails.application.routes.draw do
   root to: "pages#home"
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :destinations, only: %i[index show new create] do
+  resources :destinations, only: %i[index show new create update edit] do
     resources :reservations
   end
-  resources :reservations
+  resources :reservations do
+    member do
+      patch :accepted
+      patch :decline
+    end
+  end
 end
