@@ -11,23 +11,31 @@
 <%# </ul> %>
 
 
-<ul>
-  <% if current_user.destinations %>
+<ul class="list-group">
+  <% if current_user.destinations.present? %>
     <% current_user.destinations.each do |destination| %>
       <% destination.reservations.each do |reservation| %>
-      <li><%= reservation.user.first_name %><%= reservation.user.last_name %><%= reservation.destination.name %></li>
-      <li><%= link_to 'Accepter', accepted_reservation_path(reservation), data: {turbo_method: :patch} %></li>
-      <li><%= link_to 'Refuser', decline_reservation_path(reservation), data: {turbo_method: :patch} %></li>
-        <% if reservation.status == "Accepté" %>
-          <%= "Vous avez accepté la demande" %>
-        <% elsif reservation.status == "Refusé" %>
-          <%= "Vous avez refusé la demande" %>
-        <% else %>
-          <%= "En attente de réponse" %>
-        <% end %>
+        <li class="list-group-item">
+          <strong><%= "#{reservation.user.first_name} #{reservation.user.last_name}" %></strong> a réservé <strong><%= reservation.destination.name %></strong>
+        </li>
+        <li class="list-group-item">
+          <% if reservation.status == "En attente" %>
+            <div class="btn-group" role="group">
+              <%= link_to 'Accepter', accepted_reservation_path(reservation), class: "btn btn-success", data: { turbo_method: :patch } %>
+              <%= link_to 'Refuser', decline_reservation_path(reservation), class: "btn btn-danger", data: { turbo_method: :patch } %>
+            </div>
+          <% elsif reservation.status == "Accepté" %>
+            <span class="text-success"><%= "Vous avez accepté la demande" %></span>
+          <% elsif reservation.status == "Refusé" %>
+            <span class="text-danger"><%= "Vous avez refusé la demande" %></span>
+          <% end %>
+        </li>
       <% end %>
     <% end %>
   <% else %>
-    <p>Vous n'avez pas encore proposé de destination</p>
+    <li class="list-group-item">
+      <p>Vous n'avez pas encore proposé de destination</p>
+    </li>
   <% end %>
 </ul>
+
