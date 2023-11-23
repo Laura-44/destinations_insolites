@@ -15,7 +15,8 @@
       <% end %></p>
     </div>
 
-    <div class = "description.card shadow p-3 mb-5 bg-body rounded w-50" data-controller="calculate-stay">
+    <div class = "description.card shadow p-3 mb-5 bg-body rounded w-50" data-controller="calculate-stay"
+        data-calculate-stay-price-value=<%= @destination.price  %>>
       <p><%= @destination.description %></p>
       <p><%= @destination.price  %> € la nuitée</p>
 
@@ -24,20 +25,29 @@
         <p><%= simple_form_for(@destination) do |f| %>
           <%= f.input :date_of_availability,
                       as: :string,
-                      input_html: { data: { controller: "datepicker", action: "change->calculate-stay#calculate" }} %>
+                      input_html: { data: { controller: "datepicker", action: "change->calculate-stay#calculate", calculate_stay_target: "dates" }} %>
                       <% end %></p>
-          <p>Séjour du <strong>12/03/2024</strong> au <strong>20/03/2024</strong> soit <strong><em>8 nuitées</em></strong></p>
+          <p data-calculate-stay-target="daysDiff"%></p>
           <div id="checkboxContainer">
               <% # Générer des cases à cocher dynamiquement en utilisant une boucle Ruby %>
-              <% checkbox_options = ["🥪 Demi-pension (300€/nuitée)", "🍔🍷 Pension complète (600€/nuitée)", "🥐☕ Full breakfast (80€/jour)"] %>
+              <% checkbox_options = [
+                {label: "🥪 Demi-pension (300€/nuitée)", value:300},
+                {label: "🍔🍷 Pension complète (600€/nuitée)", value:600},
+                {label: "🥐☕ Full breakfast (80€/jour)", value:80}
+                ] %>
               <% checkbox_options.each do |option| %>
                 <label>
-                  <%= check_box_tag "checkbox_options[]", option %> <%= option %>
+                  <%= check_box_tag "checkbox_options[]", option[:value], false, data: {price: option[:value],
+                  action: "change->calculate-stay#calculate",
+                  calculate_stay_target: "option"
+                  } %>
+                  <%= option[:label] %>
                 </label>
               <% end %>
           </div>
+          <%# <p id="totalAmount">Montant total : 0€</p> %>
           <br>
-          <h3>Total du séjour = €</h3>
+          <h3 data-calculate-stay-target="totalStay"></h3>
           <%= link_to 'Je réserve', new_destination_reservation_path(@destination), class: "btn btn-primary" %>
       </div>
       <div>
