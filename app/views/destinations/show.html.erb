@@ -25,8 +25,8 @@
         <p><%= simple_form_for @reservation, method: :post do |f| %>
           <%= f.input :date_of_arrival,
                       as: :string,
-                      input_html: { data: { controller: "datepicker", action: "change->calculate-stay#calculate", calculate_stay_target: "dates" }} %></p>
-                      <% end %>
+                      input_html: { data: { controller: "datepicker", action: "change->calculate-stay#calculate", calculate_stay_target: "dates" }} %>
+                      <% end %></p>
           <p data-calculate-stay-target="daysDiff"%></p>
           <div id="checkboxContainer">
               <% # Générer des cases à cocher dynamiquement en utilisant une boucle Ruby %>
