@@ -2,29 +2,47 @@
   <div class= "d-flex justify-content-between">
     <h1><%= @destination.name %></h1>
     <%= link_to destinations_path do %>
-      <i class="fa-regular fa-circle-xmark"></i>
+      <i class="circle-chevron-left"></i>
     <% end %>
   </div>
-  <div class="shadow p-3 mb-5 bg-body rounded w-50">
-    <p><% @destination.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "image w-100 h-100" %>
-    <% end %></p>
-    </div>
-    <p><%= @destination.description %></p>
-  <div>
-    <p><%= @destination.price  %> € la semaine</p>
-  </div>
-  <%# <p><%= @destination.date_of_availability %></p>
-  <div>
-    <p><%= simple_form_for(@destination) do |f| %>
-    <%= f.input :date_of_availability,
-                as: :string,
-                input_html: { data: { controller: "datepicker" } } %>
-                <% end %></p>
-    <%= link_to 'Je réserve', new_destination_reservation_path(@destination), class: "btn btn-primary" %>
-  </div>
 
-  <div>
-    <%= link_to 'Mes réservations', destination_reservations_path(@destination) %>
+<%# fa-regular fa-circle-xmark %>
+
+  <div class="d-flex">
+    <div class="shadow p-3 mb-5 bg-body rounded w-50">
+      <p><% @destination.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "image w-100 h-100" %>
+      <% end %></p>
+    </div>
+
+    <div class = "description.card shadow p-3 mb-5 bg-body rounded w-50" data-controller="calculate-stay">
+      <p><%= @destination.description %></p>
+      <p><%= @destination.price  %> € la nuitée</p>
+
+      <%# <p><%= @destination.date_of_availability %></p>
+      <div>
+        <p><%= simple_form_for(@destination) do |f| %>
+          <%= f.input :date_of_availability,
+                      as: :string,
+                      input_html: { data: { controller: "datepicker", action: "change->calculate-stay#calculate" }} %>
+                      <% end %></p>
+          <p>Séjour du <strong>12/03/2024</strong> au <strong>20/03/2024</strong> soit <strong><em>8 nuitées</em></strong></p>
+          <div id="checkboxContainer">
+              <% # Générer des cases à cocher dynamiquement en utilisant une boucle Ruby %>
+              <% checkbox_options = ["🥪 Demi-pension (300€/nuitée)", "🍔🍷 Pension complète (600€/nuitée)", "🥐☕ Full breakfast (80€/jour)"] %>
+              <% checkbox_options.each do |option| %>
+                <label>
+                  <%= check_box_tag "checkbox_options[]", option %> <%= option %>
+                </label>
+              <% end %>
+          </div>
+          <br>
+          <h3>Total du séjour = €</h3>
+          <%= link_to 'Je réserve', new_destination_reservation_path(@destination), class: "btn btn-primary" %>
+      </div>
+      <div>
+        <%= link_to 'Mes réservations', destination_reservations_path(@destination) %>
+      </div>
+    </div>
   </div>
 </div>
