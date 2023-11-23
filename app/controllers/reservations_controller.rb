@@ -20,13 +20,16 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def update
-    raise
+  def accepted
     @reservation = Reservation.find(params[:id])
-    if @reservation.status_accepted?
+    @reservation.update(status: "Accepté")
+    redirect_to reservations_path
+  end
 
-    end
-
+  def decline
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(status: "Refusé")
+    redirect_to reservations_path
   end
 
   def destroy
