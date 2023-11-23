@@ -4,7 +4,7 @@
       <%= link_to "/", class: "nav-link me-3" do %>
         <% image_tag 'Logo.png' %>
       <% end %>
-      <%= link_to "Destinations", "destinations", class: "button nav-link ms-5" %>
+      <%= link_to "Destinations", destinations_path, class: "button nav-link ms-5" %>
     </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,11 +17,16 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+              <% if  current_user.photo.key.nil?%>
+              <%= image_tag "https://res.cloudinary.com/dbpig7djd/image/upload/v1700751306/avatar_anonyme_fmrqrs.png", class: "avatar", alt: "dropdown menu" %>
+              <% else %>
+              <%= cl_image_tag current_user.photo.key, height: 60, width: 60, crop: :fill, class: "avatar", alt: "dropdown menu" %>
+              <% end %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Je me connecte", new_user_session_path, class: "dropdown-item" %>
-              <%= link_to "Je m'inscris", new_user_registration_path, class: "dropdown-item" %>
+              <%# <%= link_to "Je me connecte", new_user_session_path, class: "dropdown-item" %>
+              <%# <%= link_to "Je m'inscris", new_user_registration_path, class: "dropdown-item" %>
+              <%= link_to 'Mes réservations', reservations_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

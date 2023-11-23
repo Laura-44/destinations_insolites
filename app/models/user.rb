@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :reservations
   has_many :destinations, through: :reservations
   validates :first_name, :last_name, :email, :password, presence: true
+  has_one_attached :photo
 end
