@@ -16,3 +16,20 @@
   height: 100%; /* Bootstrap handles width already */
   object-fit: cover; /* or 'contain' if you want stretch instead of crop */
 }
+
+.titre {
+  background: rgba(255, 255, 255, 0.245);
+  color: #059ABA;
+  padding:50px;
+  margin-left: 300px;
+  margin-right: 300px;
+  border-radius: 50px;
+}
+
+.sous-titre {
+  background: rgba(255, 255, 255, 0.245);
+  color:#FEC409;
+  margin-left: 300px;
+  margin-right: 300px;
+  border-radius: 50px;
+}
