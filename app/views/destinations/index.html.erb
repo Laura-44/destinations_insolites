@@ -1,24 +1,26 @@
 <div class="banner">
   <div class="card-category">
-    <h1>Les destinations de vos rêves</h1>
-    <p>Ayez quelque chose à raconter à la pause café du matin</p>
+    <%# <h1>Les destinations de vos rêves</h1> %>
+    <h3>Ayez quelque chose à raconter à la pause café du matin 🙂🍵</h3>
   </div>
 
   <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      <!-- Utilisez la classe 'row-cols-md-3' pour spécifier 3 cartes par ligne sur des écrans de taille moyenne et supérieure -->
       <% @destinations.each do |destination| %>
         <div class="col">
-          <div class="card">
-            <h1><%= link_to destination.name, destination_path(destination) %></h1>
-            <p><%= destination.description %></p>
-            <p><%= destination.date_of_availability %></p>
-            <p><%= destination.price %></p>
+          <div class="card shadow h-100 rounded custom-border">
             <p>
               <% destination.photos.each do |photo| %>
-                <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                <%= cl_image_tag photo.key, height: 200, width: 300, crop: :fill, class: "img-fluid rounded-4" %>
+                <!-- Ajustez la hauteur et la largeur selon vos besoins -->
               <% end %>
             </p>
+            <div class="text">
+              <h2><%= link_to destination.name, destination_path(destination), class: "text-decoration-none text-dark" %></h2>
+              <p><%= destination.description %></p>
+              <p><%= destination.date_of_availability %></p>
+              <p><%= destination.price %> €</p>
+            </div>
           </div>
         </div>
       <% end %>
