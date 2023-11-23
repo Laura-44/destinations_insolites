@@ -22,8 +22,11 @@
 
       <%# <p><%= @destination.date_of_availability %></p>
       <div>
-        <p><%= simple_form_for(@destination) do |f| %>
-          <%= f.input :date_of_availability,
+        <p><%= simple_form_for @reservation, method: :post do |f| %>
+          <%= f.input :date_of_arrival,
+                      as: :string,
+                      input_html: { data: { controller: "datepicker", action: "change->calculate-stay#calculate", calculate_stay_target: "dates" }} %>
+          <%= f.input :date_of_departure,
                       as: :string,
                       input_html: { data: { controller: "datepicker", action: "change->calculate-stay#calculate", calculate_stay_target: "dates" }} %>
                       <% end %></p>
@@ -48,10 +51,10 @@
           <%# <p id="totalAmount">Montant total : 0€</p> %>
           <br>
           <h3 data-calculate-stay-target="totalStay"></h3>
-          <%= link_to 'Je réserve', new_destination_reservation_path(@destination), class: "btn btn-primary" %>
+          <%= link_to 'Je réserve', destination_reservation_path(@destination), class: "btn btn-primary" %>
       </div>
       <%# <div> %>
-        <%# <%= link_to 'Mes réservations', destination_reservations_path(@destination) %> 
+        <%# <%= link_to 'Mes réservations', destination_reservations_path(@destination) %>
       <%# </div> %>
     </div>
   </div>

@@ -3,8 +3,11 @@ class ReservationsController < ApplicationController
 
   def index
     @reservations = Reservation.all
-    # @reservations = Reservation.where(params[:destination_id])
   end
+
+  # def show
+  #   @reservation = Reservation.find(params[:id])
+  # end
 
   def new
     @destination = Destination.find(params[:destination_id])
@@ -12,10 +15,11 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    raise
     @reservation = Reservation.new(reservation_params)
     @reservation.destination = @destination
     if @reservation.save!
-      redirect_to destination_path(@destination)
+      redirect_to destination_reservation_path(@destination, @reservation)
     else
       render :new, status: :unprocessable_entity
     end
@@ -46,6 +50,6 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:destination_id, :user_id, :status)
+    params.require(:reservation).permit(:destination_id, :user_id, :status, :date_of_arrival, :date_of_departure)
   end
 end
