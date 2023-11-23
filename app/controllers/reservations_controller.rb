@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.destination = @destination
-    if @reservation.save
+    if @reservation.save!
       redirect_to destination_path(@destination)
     else
       render :new, status: :unprocessable_entity
