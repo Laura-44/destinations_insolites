@@ -7,7 +7,7 @@
     <p>Insolite Voyage a le plaisir de vous proposer l'expérience suivante :</p>
     <h2 class="text-primary"><%= @reservation.destination.name %></h2>
     <br>
-    <h2>Séjour du <%= @reservation.date_of_arrival.strftime("%y %m %d") %> au <%= @reservation.date_of_departure.strftime("%y %m %d") %> <br>soit <%= (@reservation.date_of_departure - @reservation.date_of_arrival).to_i / 360  %> nuitées</h2>
+    <h2>Séjour du <%= @reservation.date_of_arrival %> au <%= @reservation.date_of_departure.strftime("%y %m %d") %> <br>soit <%= (@reservation.date_of_departure - @reservation.date_of_arrival).to_i / 360  %> nuitées</h2>
     <p>Le statut de Votre réservation est actuellement "en cours de validation"</p>
     <p>Nous vous remercions d'avoir choisi Insolite Voyage pour votre future destination et espérons que celle-ci correspondra à vos attentes.</p>
 <br>

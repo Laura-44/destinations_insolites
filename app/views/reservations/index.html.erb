@@ -60,8 +60,8 @@
             <!-- Vous pouvez personnaliser ces parties en fonction de vos besoins -->
             <h5 class="card-title"><%= "#{reservation.user.first_name} #{reservation.user.last_name}" %></h5>
             <p class="card-text">
-              Date d'arrivée: <%= reservation.date_of_arrival.strftime("%y %m %d") %><br>
-              Date de départ: <%= reservation.date_of_departure.strftime("%y %m %d") %><br>
+              Date d'arrivée: <%= reservation.date_of_arrival %><br>
+              Date de départ: <%= reservation.date_of_departure %><br>
               Ma destination choisie: <%= reservation.destination.name%>
             </p>
             <!-- Si vous avez des actions spécifiques à ajouter ici en fonction du statut, vous pouvez le faire -->
