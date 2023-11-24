@@ -1,25 +1,33 @@
 <div class="banner">
   <div class="card-category">
-    <%# <h1>Les destinations de vos rêves</h1> %>
+    <!-- <h1>Les destinations de vos rêves</h1> -->
     <h3>Ayez quelque chose à raconter à la pause café du matin 🙂🍵</h3>
+    <%= form_with url: destinations_path, method: :get, class: "d-flex mb-5" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
   </div>
 
-  <div class="container">
+  <div class="container pb-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <% @destinations.each do |destination| %>
         <div class="col">
-          <div class="card shadow h-100 rounded custom-border">
-            <p>
-              <% destination.photos.each do |photo| %>
-                <%= cl_image_tag photo.key, height: 200, width: 300, crop: :fill, class: "img-fluid rounded-4" %>
-                <!-- Ajustez la hauteur et la largeur selon vos besoins -->
-              <% end %>
-            </p>
+          <div class="card shadow h-100 rounded custom-border position-relative bg-white">
+            <% destination.photos.each do |photo| %>
+              <%= cl_image_tag photo.key, height: 200, width: 300, crop: :fill, class: "img-fluid rounded-4 pb-2" %>
+              <!-- Ajustez la hauteur et la largeur selon vos besoins -->
+            <% end %>
+
             <div class="text">
               <h2><%= link_to destination.name, destination_path(destination), class: "text-decoration-none text-dark" %></h2>
               <p><%= destination.description %></p>
-              <p><%= destination.date_of_availability %></p>
-              <p><%= destination.price %> €</p>
+            </div>
+            <div class="price pb-5">
+              <p class="price position-absolute bottom-0 end-0"><strong><%= destination.price %> €</strong></p>
             </div>
           </div>
         </div>
