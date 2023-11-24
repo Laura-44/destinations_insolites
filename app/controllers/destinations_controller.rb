@@ -1,6 +1,10 @@
 class DestinationsController < ApplicationController
   def index
     @destinations = Destination.all
+    if params[:query].present?
+      sql_subquery = "name ILIKE :query OR description ILIKE :query"
+      @destinations = @destinations.where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def show
