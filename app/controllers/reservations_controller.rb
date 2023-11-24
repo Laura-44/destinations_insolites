@@ -4,7 +4,6 @@ class ReservationsController < ApplicationController
   def index
     # @reservations = Reservation.all
     @reservations = Reservation.where(user_id: current_user.id)
-    raise
   end
 
   def show
@@ -18,8 +17,7 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    # @reservation.date_of_arrival=reservation_params[:date_of_arrival]
-    raise
+    @reservation.date_of_departure = reservation_params[:date_of_arrival].split(' to ')[1]
     @reservation.destination = @destination
     @reservation.user = current_user
     if @reservation.save!
