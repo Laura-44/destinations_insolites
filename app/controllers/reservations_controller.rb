@@ -18,6 +18,8 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.destination = @destination
+    @reservation.date_of_arrival = reservation_params[:date_of_arrival]
+    @reservation.date_of_departure = reservation_params[:date_of_arrival].split(' to ')[1]
     @reservation.user = current_user
     if @reservation.save!
       redirect_to destination_reservation_path(@destination, @reservation)
