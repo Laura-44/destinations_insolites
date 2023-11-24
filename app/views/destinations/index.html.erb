@@ -18,7 +18,7 @@
         <div class="col">
           <div class="card shadow h-100 rounded custom-border position-relative bg-white">
             <% destination.photos.each do |photo| %>
-              <%= cl_image_tag photo.key, height: 200, width: 300, crop: :fill, class: "img-fluid rounded-4 pb-2" %>
+              <%= cl_image_path photo.key, height: 200, width: 300, crop: :fill, class: "img-fluid rounded-4 pb-2" %>
               <!-- Ajustez la hauteur et la largeur selon vos besoins -->
             <% end %>
 
