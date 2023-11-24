@@ -39,3 +39,11 @@
   <% end %>
 </ul>
 
+<ul class="list-group">
+    <% destination.reservations.each do |reservation| %>
+    <li class="list-group-item">
+      <%= "Vous avez réservé" reservation.destination.name "du" reservation.destination.date_of_arrival "au" reservation.destination.date_of_departure %>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
