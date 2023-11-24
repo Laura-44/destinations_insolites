@@ -36,7 +36,7 @@ destination2.save
 file = URI.open("https://res.cloudinary.com/dbpig7djd/image/upload/v1700573435/porte-du-desert-maroc_yvxqt6.jpg")
 destination3.photos.attach(io: file, filename: "Désert.png", content_type: "image/jpg")
 destination3.save
-file = URI.open("https://res.cloudinary.com/dbpig7djd/image/upload/v1700573434/istockphoto-157286122-612x612_cnit3x.jpg")
+file = URI.open("https://res.cloudinary.com/dbpig7djd/image/upload/v1700573434/istockphoto-887323060-612x612_i4euoq.jpg")
 destination4.photos.attach(io: file, filename: "Igloo.png", content_type: "image/jpg")
 destination4.save
 file = URI.open("https://res.cloudinary.com/dbpig7djd/image/upload/v1700573318/Bung2-300x246_huhvlw.jpg")
