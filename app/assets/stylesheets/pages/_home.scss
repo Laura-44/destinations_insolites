@@ -36,5 +36,9 @@
 
 
 .content {
-  min-height: calc(100vh-123px);
+  min-height: calc(100vh - 163px) !important;
+}
+
+html {
+  margin: 0px;
 }
