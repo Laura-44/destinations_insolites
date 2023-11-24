@@ -2,12 +2,14 @@ class ReservationsController < ApplicationController
   before_action :set_destination, only: %i[new create]
 
   def index
-    @reservations = Reservation.all
+    # @reservations = Reservation.all
+    @reservations = Reservation.where(user_id: current_user.id)
+    raise
   end
 
-  # def show
-  #   @reservation = Reservation.find(params[:id])
-  # end
+  def show
+    @reservation = Reservation.find(params[:id])
+  end
 
   def new
     @destination = Destination.find(params[:destination_id])
@@ -16,7 +18,10 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
+    # @reservation.date_of_arrival=reservation_params[:date_of_arrival]
+    raise
     @reservation.destination = @destination
+    @reservation.user = current_user
     if @reservation.save!
       redirect_to destination_reservation_path(@destination, @reservation)
     else
@@ -49,6 +54,6 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:destination_id, :user_id, :status, :date_of_arrival, :date_of_departure)
+    params.require(:reservation).permit(:status, :date_of_arrival, :date_of_departure)
   end
 end

@@ -20,13 +20,14 @@
       <p><%= @destination.description %></p>
       <p><%= @destination.price  %> € la nuitée</p>
 
-      <%# <p><%= @destination.date_of_availability %></p>
+      <%# <><%= @destination.date_of_availability %>
       <div>
-        <p><%= simple_form_for @reservation, method: :post do |f| %>
+        <p><%= simple_form_for @reservation, html: {id: "form-id"} , method: :post do |f| %>
           <%= f.input :date_of_arrival,
                       as: :string,
                       input_html: { data: { controller: "datepicker", action: "change->calculate-stay#calculate", calculate_stay_target: "dates" }} %>
-                      <% end %></p>
+                      <% end %>
+        </p>
           <p data-calculate-stay-target="daysDiff"%></p>
           <div id="checkboxContainer">
               <% # Générer des cases à cocher dynamiquement en utilisant une boucle Ruby %>
@@ -48,7 +49,7 @@
           <%# <p id="totalAmount">Montant total : 0€</p> %>
           <br>
           <h3 data-calculate-stay-target="totalStay"></h3>
-          <%= link_to 'Je réserve', destination_reservation_path(@destination), class: "btn btn-primary" %>
+          <%= submit_tag 'Je réserve', form:"form-id", class: "btn btn-primary" %>
       </div>
       <%# <div> %>
         <%# <%= link_to 'Mes réservations', destination_reservations_path(@destination) %>
