@@ -10,32 +10,42 @@
 <%# <% end %>
 <%# </ul> %>
 
-
-<ul class="list-group">
-  <% if current_user.destinations.present? %>
-    <% current_user.destinations.each do |destination| %>
-      <% destination.reservations.each do |reservation| %>
-        <li class="list-group-item">
-          <strong><%= "#{reservation.user.first_name} #{reservation.user.last_name}" %></strong> a réservé <strong><%= reservation.destination.name %></strong>
-        </li>
-        <li class="list-group-item">
-          <% if reservation.status == "En attente" %>
-            <div class="btn-group" role="group">
-              <%= link_to 'Accepter', accepted_reservation_path(reservation), class: "btn btn-success", data: { turbo_method: :patch } %>
-              <%= link_to 'Refuser', decline_reservation_path(reservation), class: "btn btn-danger", data: { turbo_method: :patch } %>
+<div class="container">
+  <div class="card-deck">
+    <% if current_user.destinations.present? %>
+      <% current_user.destinations.each do |destination| %>
+        <% destination.reservations.each do |reservation| %>
+          <div class="card mb-4" style="width: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <div class="card-body d-flex justify-content-between">
+              <div class="user-info">
+                <h5 class="card-title"><%= "#{reservation.user.first_name} #{reservation.user.last_name}" %></h5>
+                <p class="card-text">a réservé <strong><%= reservation.destination.name %></strong></p>
+                <% if reservation.status == "En attente" %>
+                  <div class="btn-group" role="group">
+                    <%= link_to 'Accepter', accepted_reservation_path(reservation), class: "btn btn-success", data: { turbo_method: :patch } %>
+                    <%= link_to 'Refuser', decline_reservation_path(reservation), class: "btn btn-danger", data: { turbo_method: :patch } %>
+                  </div>
+                <% elsif reservation.status == "Accepté" %>
+                  <p class="card-text text-success">Vous avez accepté la demande</p>
+                <% elsif reservation.status == "Refusé" %>
+                  <p class="card-text text-danger">Vous avez refusé la demande</p>
+                <% else %>
+                  <p class="card-text">Vous n'avez pas encore proposé de destination</p>
+                <% end %>
+              </div>
+              <div class="avatar">
+                <p>
+                  <% if current_user.photo.key.nil? %>
+                    <%= image_tag "https://res.cloudinary.com/dbpig7djd/image/upload/v1700751306/avatar_anonyme_fmrqrs.png", class: "avatar", alt: "dropdown menu" %>
+                  <% else %>
+                    <%= cl_image_tag current_user.photo.key, height: 60, width: 60, crop: :fill, class: "avatar", alt: "dropdown menu" %>
+                  <% end %>
+                </p>
+              </div>
             </div>
-          <% elsif reservation.status == "Accepté" %>
-            <span class="text-success"><%= "Vous avez accepté la demande" %></span>
-          <% elsif reservation.status == "Refusé" %>
-            <span class="text-danger"><%= "Vous avez refusé la demande" %></span>
+          </div>
           <% end %>
-        </li>
+        <% end %>
       <% end %>
-    <% end %>
-  <% else %>
-    <li class="list-group-item">
-      <p>Vous n'avez pas encore proposé de destination</p>
-    </li>
-  <% end %>
-</ul>
-
+  </div>
+</div>
