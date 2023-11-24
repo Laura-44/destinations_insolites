@@ -11,6 +11,7 @@ export default class extends Controller {
   }
 
   calculate(event) {
+    
   const dates=this.datesTarget.value.split(" ")
 
 

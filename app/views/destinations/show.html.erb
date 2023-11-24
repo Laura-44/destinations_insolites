@@ -25,8 +25,9 @@
 
       <%# <><%= @destination.date_of_availability %>
       <div>
-        <p><%= simple_form_for @reservation, html: {id: "form-id"} , method: :post do |f| %>
-          <%= f.input :date_of_arrival,
+        <p><%= simple_form_for [@destination, @reservation], html: {id: "form-id"} , method: :post do |f| %>
+          <%= f.input :date_of_arrival, label: 'Date de réservation',
+                      html5: true,
                       as: :string,
                       input_html: { data: { controller: "datepicker", action: "change->calculate-stay#calculate", calculate_stay_target: "dates" }} %>
                       <% end %>
