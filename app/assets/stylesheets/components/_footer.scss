@@ -2,16 +2,32 @@
   background-color: #059ABA;
   object-fit: cover;
   height: 70px;
-  text-align: center;
+  // text-align: center;
+  // justify-content: center;
+  // align-items: center;
 }
 
 .footer-background i {
   font-size: xx-large;
-  display: block;
-  border: 1px solid red;
+  // display: flex;
+  // border: 1px solid red;
   // justify-content: center;
   // align-content: center ;
   color: aliceblue;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  padding-bottom: 0px;
+}
+
+footer {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 // background-image: url("https://res.cloudinary.com/dbpig7djd/image/upload/v1700573434/istockphoto-157286122-612x612_cnit3x.jpg");
