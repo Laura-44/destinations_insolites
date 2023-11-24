@@ -19,7 +19,6 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     # @reservation.date_of_arrival=reservation_params[:date_of_arrival]
-    raise
     @reservation.destination = @destination
     @reservation.user = current_user
     if @reservation.save!
